@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🃏 Cards Flexbox - Grid Responsivo</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 0;
+        }
+
+        .page-header {
+            text-align: center;
+            color: white;
+            margin-bottom: 60px;
+        }
+
+        .page-header h1 {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .page-header p {
+            font-size: 1.3em;
+            opacity: 0.9;
+        }
+
+        /* ===== CARDS GRID ===== */
+.cards-container {
+    background: rgba(255,255,255,0.15);
+    border-radius: 20px;
+    padding: 50px;
+    margin: 40px 0;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+}
+
+        .cards-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .card {
+            flex: 1 1 320px;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+        }
+
+        .card-image {
+            height: 200px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4em;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:nth-child(2) .card-image { background: linear-gradient(45deg, #48bb78, #38a169); }
+        .card:nth-child(3) .card-image { background: linear-gradient(45deg, #ed8936, #dd6b20); }
+        .card:nth-child(4) .card-image { background: linear-gradient(45deg, #9f7aea, #805ad5); }
+        .card:nth-child(5) .card-image { background: linear-gradient(45deg, #ef4444, #dc2626); }
+        .card:nth-child(6) .card-image { background: linear-gradient(45deg, #06b6d4, #0891b2); }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .card-title {
+            font-size: 1.4em;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 12px;
+        }
+
+        .card-description {
+            color: #718096;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            background: #e2e8f0;
+            color: #4a5568;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .card-price {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .card-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .card-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* ===== CARDS ESPECIAIS ===== */
+        .card-featured {
+            border: 3px solid #ffd700;
+            position: relative;
+        }
+
+        .card-featured::before {
+            content: '⭐ DESTAQUE';
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #ffd700;
+            color: #333;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+            z-index: 10;
+        }
+
+        /* ===== FILTROS ===== */
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: white;
+            color: #667eea;
+            border-color: white;
+        }
+
+        /* ===== RESPONSIVO ===== */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.5em;
+            }
+            
+            .cards-container {
+                padding: 30px 20px;
+            }
+            
+            .cards-grid {
+                gap: 20px;
+            }
+            
+            .card {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- ===== HEADER ===== -->
+        <div class="page-header">
+            <h1>🃏 Cards Flexbox</h1>
+            <p>Grid responsivo de cards criado com CSS Flexbox</p>
+        </div>
+
+        <!-- ===== FILTROS ===== -->
+        <div class="filters">
+            <button class="filter-btn active">Todos</button>
+            <button class="filter-btn">Web</button>
+            <button class="filter-btn">Mobile</button>
+            <button class="filter-btn">Design</button>
+        </div>
+
+        <!-- ===== CARDS ===== -->
+        <div class="cards-container">
+            <div class="cards-grid">
+                
+                <!-- Card 1 - Destaque -->
+                <div class="card card-featured">
+                    <div class="card-image">🚀</div>
+                    <div class="card-content">
+                        <h3 class="card-title">Site Corporativo Pro</h3>
+                        <p class="card-description">
+                            Website completo com design moderno, sistema de gerenciamento 
+                            e otimização para motores de busca.
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">SEO</span>
+                        </div>
+                        <div class="card-footer">
+                            <span class="card-price">R$ 3.500</span>
+                            <button class="card-button">Ver Projeto</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="card">
+                    <div class="card-image">📱</div>
+                    <div class="card-content">
+                        <h3 class="card-title">App Mobile</h3>
+                        <p class="card-description">
+                            Aplicativo nativo para iOS e Android com interface 
+                            intuitiva e funcionalidades avançadas.
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag">React Native</span>
+                            <span class="tag">Firebase</span>
+                        </div>
+                        <div class="card-footer">
+                            <span class="card-price">R$ 5.200</span>
+                            <button class="card-button">Ver Projeto</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="card">
+                    <div class="card-image">🛒</div>
+                    <div class="card-content">
+                        <h3 class="card-title">E-commerce Premium</h3>
+                        <p class="card-description">
+                            Loja virtual completa com sistema de pagamentos, 
+                            gestão de estoque e painel administrativo.
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag">Vue.js</span>
+                            <span class="tag">Stripe</span>
+                            <span class="tag">MySQL</span>
+                        </div>
+                        <div class="card-footer">
+                            <span class="card-price">R$ 7.800</span>
+                            <button class="card-button">Ver Projeto</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="card">
+                    <div class="card-image">📊</div>
+                    <div class="card-content">
+                        <h3 class="card-title">Dashboard Analytics</h3>
+                        <p class="card-description">
+                            Painel de controle com gráficos interativos 
+                            e relatórios em tempo real.
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag">Angular</span>
+                            <span class="tag">D3.js</span>
+                            <span class="tag">API</span>
+                        </div>
+                        <div class="card-footer">
+                            <span class="card-price">R$ 4.500</span>
+                            <button class="card-button">Ver Projeto</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="card">
+                    <div class="card-image">🎨</div>
+                    <div class="card-content">
+                        <h3 class="card-title">Brand Identity</h3>
+                        <p class="card-description">
+                            Criação de identidade visual completa com 
+                            logo, paleta de cores e manual da marca.
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag">Photoshop</span>
+                            <span class="tag">Illustrator</span>
+                        </div>
+                        <div class="card-footer">
+                            <span class="card-price">R$ 2.200</span>
+                            <button class="card-button">Ver Projeto</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="card">
+                    <div class="card-image">🤖</div>
+                    <div class="card-content">
+                        <h3 class="card-title">Chatbot IA</h3>
+                        <p class="card-description">
+                            Bot inteligente com processamento de linguagem 
+                            natural e integração com APIs externas.
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">NLP</span>
+                            <span class="tag">TensorFlow</span>
+                        </div>
+                        <div class="card-footer">
+                            <span class="card-price">R$ 6.800</span>
+                            <button class="card-button">Ver Projeto</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Funcionalidade dos filtros
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active de todos
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                // Adiciona active no clicado
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

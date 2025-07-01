@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎯 Guia Flexbox - Início</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .box {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 1.3em;
+            font-weight: bold;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+            min-width: 200px;
+        }
+
+        .box:hover {
+            transform: translateY(-10px);
+        }
+
+        .box:nth-child(1) { background: linear-gradient(45deg, #667eea, #764ba2); }
+        .box:nth-child(2) { background: linear-gradient(45deg, #48bb78, #38a169); }
+        .box:nth-child(3) { background: linear-gradient(45deg, #ed8936, #dd6b20); }
+
+        .controls {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .btn {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+            padding: 12px 25px;
+            margin: 5px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .box {
+                width: 100%;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🎯 Guia Flexbox</h1>
+        <p>Aprenda flexbox de forma prática e interativa!</p>
+    </div>
+
+    <div class="container" id="flexContainer">
+        <div class="box">
+            📱<br>
+            Mobile First
+        </div>
+        <div class="box">
+            💻<br>
+            Responsivo
+        </div>
+        <div class="box">
+            🚀<br>
+            Moderno
+        </div>
+    </div>
+
+    <div class="controls">
+        <button class="btn" onclick="changeJustify('flex-start')">← Esquerda</button>
+        <button class="btn" onclick="changeJustify('center')">⬛ Centro</button>
+        <button class="btn" onclick="changeJustify('flex-end')">→ Direita</button>
+        <button class="btn" onclick="changeJustify('space-between')">↔️ Entre</button>
+        <button class="btn" onclick="changeJustify('space-around')">🔄 Ao redor</button>
+    </div>
+
+    <script>
+        function changeJustify(value) {
+            document.getElementById('flexContainer').style.justifyContent = value;
+        }
+    </script>
+</body>
+</html>
